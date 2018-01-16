@@ -98,12 +98,19 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgressButton\ProgressButton.Constants.cs" />
+    <Compile Include="ProgressButton\ProgressButton.cs" />
+    <Compile Include="ProgressControl\ProgressControl.cs" />
+    <Compile Include="ProgressControl\ProgressState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestService.cs" />
+    <Compile Include="Converter\BorderToStrokeThicknessConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Compile Include="ProgressControl\ProgressControl.Constants.cs" />
     <None Include="ProgressControlSample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
@@ -133,7 +144,14 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
       <Version>2.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.0</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
