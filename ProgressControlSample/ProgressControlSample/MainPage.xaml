@@ -8,6 +8,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel VerticalAlignment="Center">
+            <local:ProgressStateIndicator    
+                                      Padding="10" FontSize="50"
+                
+                                      VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                          Content="Start"
+                                 State="{Binding ElementName=StateListView,Path=SelectedItem.Tag}"
+                
+                                         />
+            <ListView x:Name="StateListView" Margin="10" SelectionChanged="StateListView_SelectionChanged">
+                
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>

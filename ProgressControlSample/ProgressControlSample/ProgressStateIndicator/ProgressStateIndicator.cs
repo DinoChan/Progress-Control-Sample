@@ -19,11 +19,11 @@ namespace ProgressControlSample
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = CompletedStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = FaultedStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = PausedStateName)]
-    public partial class ProgressButton : Button
+    public partial class ProgressStateIndicator : Button
     {
-        public ProgressButton()
+        public ProgressStateIndicator()
         {
-            this.DefaultStyleKey = typeof(ProgressButton);
+            this.DefaultStyleKey = typeof(ProgressStateIndicator);
         }
 
         /// <summary>
@@ -39,11 +39,11 @@ namespace ProgressControlSample
         /// 标识 State 依赖属性。
         /// </summary>
         public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(ProgressState), typeof(ProgressButton), new PropertyMetadata(ProgressState.Ready, OnStateChanged));
+            DependencyProperty.Register("State", typeof(ProgressState), typeof(ProgressStateIndicator), new PropertyMetadata(ProgressState.Ready, OnStateChanged));
 
         private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            ProgressButton target = obj as ProgressButton;
+            ProgressStateIndicator target = obj as ProgressStateIndicator;
             ProgressState oldValue = (ProgressState)args.OldValue;
             ProgressState newValue = (ProgressState)args.NewValue;
             if (oldValue != newValue)
@@ -80,6 +80,9 @@ namespace ProgressControlSample
                     break;
                 case ProgressState.Faulted:
                     progressState = FaultedStateName;
+                    break;
+                case ProgressState.Paused:
+                    progressState = PausedStateName;
                     break;
                 default:
                     progressState = ReadyStateName;

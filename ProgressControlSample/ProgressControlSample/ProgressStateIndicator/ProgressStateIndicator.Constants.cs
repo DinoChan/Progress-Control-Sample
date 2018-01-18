@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ProgressControlSample
 
 {
-    public partial class ProgressButton
+    public partial class ProgressStateIndicator
     {
         private const string ProgressStatesGroupName = "ProgressStates";
         private const string ReadyStateName = "Ready";

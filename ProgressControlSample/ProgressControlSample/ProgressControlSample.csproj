@@ -95,11 +95,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\ProgressBehavior.cs" />
+    <Compile Include="Behaviors\RectangleToEllipseBehavior.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgressButton\ProgressButton.Constants.cs" />
-    <Compile Include="ProgressButton\ProgressButton.cs" />
+    <Compile Include="ProgressStateIndicator\ProgressStateIndicator.Constants.cs" />
+    <Compile Include="ProgressStateIndicator\ProgressStateIndicator.cs" />
     <Compile Include="ProgressControl\ProgressControl.cs" />
     <Compile Include="ProgressControl\ProgressState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
