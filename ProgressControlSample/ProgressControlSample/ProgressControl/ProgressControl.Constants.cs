@@ -8,15 +8,14 @@ namespace ProgressControlSample
 {
     public partial class ProgressControl
     {
-        private const string CommonStatesGroupName = "CommonStates";
-        private const string DeterminateStateName = "Determinate";
-        private const string IndeterminateStateName = "Indeterminate";
-        private const string UpdatingStateName = "Updating";
-        private const string ErrorStateName = "Error";
+        private const string ProgressStatesGroupName = "ProgressStates";
+        private const string ReadyStateName = "Ready";
+        private const string StartedStateName = "Started";
+        private const string CompletedStateName = "Completed";
+        private const string FaultedStateName = "Faulted";
         private const string PausedStateName = "Paused";
 
-        private const string StartButtonName = "StartButton";
-        private const string PauseButtonName = "PauseButton";
+        private const string ProgressStateIndicatorName = "ProgressStateIndicator";
         private const string CancelButtonName = "CancelButton";
     }
 }
