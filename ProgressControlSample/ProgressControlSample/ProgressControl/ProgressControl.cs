@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Markup;
 
 // The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
@@ -19,18 +13,62 @@ namespace ProgressControlSample
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = CompletedStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = FaultedStateName)]
     [TemplateVisualState(GroupName = ProgressStatesGroupName, Name = PausedStateName)]
-
     [TemplatePart(Name = ProgressStateIndicatorName, Type = typeof(ProgressStateIndicator))]
     [TemplatePart(Name = CancelButtonName, Type = typeof(Button))]
+    [ContentProperty(Name = nameof(Content))]
     public partial class ProgressControl : RangeBase
     {
+        /// <summary>
+        ///     标识 Content 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register("Content", typeof(object), typeof(ProgressControl), new PropertyMetadata(null, OnContentChanged));
+
+        /// <summary>
+        ///     标识 State 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty StateProperty =
+            DependencyProperty.Register("State", typeof(ProgressState), typeof(ProgressControl), new PropertyMetadata(ProgressState.Ready, OnStateChanged));
+
+        private Button _cancelButton;
 
         private ProgressStateIndicator _progressStateIndicator;
-        private Button _cancelButton;
 
         public ProgressControl()
         {
-            this.DefaultStyleKey = typeof(ProgressControl);
+            DefaultStyleKey = typeof(ProgressControl);
+        }
+
+
+        /// <summary>
+        ///     获取或设置Content的值
+        /// </summary>
+        public object Content
+        {
+            get => GetValue(ContentProperty);
+            set => SetValue(ContentProperty, value);
+        }
+
+        /// <summary>
+        ///     获取或设置State的值
+        /// </summary>
+        public ProgressState State
+        {
+            get => (ProgressState) GetValue(StateProperty);
+            set => SetValue(StateProperty, value);
+        }
+
+        private static void OnContentChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var target = obj as ProgressControl;
+            var oldValue = args.OldValue;
+            var newValue = args.NewValue;
+            if (oldValue != newValue)
+                target.OnContentChanged(oldValue, newValue);
+        }
+
+        protected virtual void OnContentChanged(object oldValue, object newValue)
+        {
         }
 
         public event EventHandler StateChanged;
@@ -39,26 +77,11 @@ namespace ProgressControlSample
         public event EventHandler Completed;
         public event EventHandler Cancelled;
 
-        /// <summary>
-        /// 获取或设置State的值
-        /// </summary>  
-        public ProgressState State
-        {
-            get { return (ProgressState)GetValue(StateProperty); }
-            set { SetValue(StateProperty, value); }
-        }
-
-        /// <summary>
-        /// 标识 State 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(ProgressState), typeof(ProgressControl), new PropertyMetadata(ProgressState.Ready, OnStateChanged));
-
         private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            ProgressControl target = obj as ProgressControl;
-            ProgressState oldValue = (ProgressState)args.OldValue;
-            ProgressState newValue = (ProgressState)args.NewValue;
+            var target = obj as ProgressControl;
+            var oldValue = (ProgressState) args.OldValue;
+            var newValue = (ProgressState) args.NewValue;
             if (oldValue != newValue)
                 target.OnStateChanged(oldValue, newValue);
         }
@@ -153,8 +176,7 @@ namespace ProgressControlSample
 
         private bool ChangeStateCore(ProgressState newstate)
         {
-
-            var args = new ProgressStateChangingEventArgs(this.State, newstate);
+            var args = new ProgressStateChangingEventArgs(State, newstate);
             //if (args.OldValue == ProgressState.Started && args.NewValue == ProgressState.Ready)
             //    args.Cancel = true;
 
@@ -169,8 +191,6 @@ namespace ProgressControlSample
 
         protected virtual void OnStateChanging(ProgressStateChangingEventArgs args)
         {
-
         }
-
     }
 }
