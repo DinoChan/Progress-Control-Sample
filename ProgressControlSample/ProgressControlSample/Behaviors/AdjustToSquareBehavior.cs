@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace ProgressControlSample
 {
-    public class AdjustToSquareBehavior : ProgressBehavior<Panel>
+    public class AdjustToSquareBehavior : ProgressBehavior<FrameworkElement>
     {
         private Size _originalSize;
 
@@ -47,6 +47,8 @@ namespace ProgressControlSample
                 newValue.SizeChanged += OnContentElementSizeChanged;
                 if (Progress == 0)
                     _originalSize = newValue.RenderSize;
+
+                UpdateTargetSize();
             }
 
         }

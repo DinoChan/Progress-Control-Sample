@@ -89,7 +89,7 @@
         <Setter Property="HorizontalAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalAlignment"
-                Value="Center" />
+                Value="Stretch" />
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontWeight"
@@ -182,15 +182,16 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
+                        <Grid >
                           
                             <local:ProgressStateIndicator Content="{TemplateBinding Content}"
                                                           State="{TemplateBinding State}"
                                                           x:Name="ProgressStateIndicator"
-                                                          HorizontalAlignment="Right" />
+                                                           />
 
                             <Button x:Name="CancelButton"
-                                    Width="{Binding ElementName=ProgressStateIndicator,Path=ActualHeight}"
+                                    Visibility="Collapsed"
+                                    local:FrameworkElementExtensions.IsAdjustToSquare="True"
                                     HorizontalAlignment="Center"
                                     Style="{StaticResource CancelButtonStyle}" />
                         </Grid>
