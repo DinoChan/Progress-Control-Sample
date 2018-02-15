@@ -108,6 +108,7 @@
     <Compile Include="ProgressControl\ProgressControl.cs" />
     <Compile Include="ProgressControl\ProgressState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SizeBridge.cs" />
     <Compile Include="TestService.cs" />
     <Compile Include="Converter\BorderToStrokeThicknessConverter.cs" />
   </ItemGroup>

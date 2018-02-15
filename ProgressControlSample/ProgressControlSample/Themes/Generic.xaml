@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:ProgressControlSample"
                     xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls"
-                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity">
+                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                    xmlns:Foundation="using:Windows.Foundation">
     <local:BorderToStrokeThicknessConverter x:Key="BorderToStrokeThicknessConverter" />
 
     <Style TargetType="ContentControl"
@@ -159,7 +160,7 @@
 
                         </VisualStateManager.VisualStateGroups>
                         <ContentControl x:Name="CancelElement"
-                                        Style="{StaticResource CancelElementStyle }"
+                                        Style="{StaticResource CancelElementStyle}"
                                         Padding="{TemplateBinding Padding}" />
                         <ContentPresenter x:Name="ContentPresenter"
                                           Padding="{TemplateBinding Padding}"
@@ -176,24 +177,49 @@
     </Style>
 
     <Style TargetType="local:ProgressControl">
+        <Setter Property="IsTabStop"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ProgressControl">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid >
-                          
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            x:Name="Root">
+                        <Border.Resources>
+                            <local:SizeBridge Element="{Binding ElementName=Root}" x:Name="SizeBridge"/>
+                        </Border.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ProgressStates">
+                                <VisualState x:Name="Ready" />
+                                <VisualState x:Name="Started" />
+                                <VisualState x:Name="Completed" />
+                                <VisualState x:Name="Faulted" />
+                                <VisualState x:Name="Paused">
+                                    <VisualState.Setters>
+                                        <Setter Target="CancelButton.(UIElement.Visibility)"
+                                                Value="{TemplateBinding Visibility}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+
                             <local:ProgressStateIndicator Content="{TemplateBinding Content}"
                                                           State="{TemplateBinding State}"
                                                           x:Name="ProgressStateIndicator"
-                                                           />
+                                                          HorizontalAlignment="Stretch">
+                              
+                            </local:ProgressStateIndicator>
 
                             <Button x:Name="CancelButton"
                                     Visibility="Collapsed"
                                     local:FrameworkElementExtensions.IsAdjustToSquare="True"
                                     HorizontalAlignment="Center"
-                                    Style="{StaticResource CancelButtonStyle}" />
+                                    Style="{StaticResource CancelButtonStyle}"
+                                 >
+                               
+                            </Button>
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -522,7 +548,7 @@
 
                         <Grid x:Name="InnerGrid">
                             <Rectangle x:Name="Rectangle"
-                                       StrokeThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderThickness,Converter={StaticResource BorderToStrokeThicknessConverter}}"
+                                       StrokeThickness="{Binding BorderThickness, Converter={StaticResource BorderToStrokeThicknessConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                        Stroke="{TemplateBinding BorderBrush}"
                                        Fill="{TemplateBinding Background}">
                                 <interactivity:Interaction.Behaviors>
