@@ -55,14 +55,14 @@ namespace ProgressControlSample
                   if (double.IsInfinity(width) || double.IsInfinity(height) || width == 0 || height == 0)
                       return;
 
-                  if (width > height)
-                  {
+                  //if (width > height)
+                  //{
                       target.Width = height;
-                  }
-                  else
-                  {
-                      target.Height = width;
-                  }
+                  //}
+                  //else
+                  //{
+                  //    target.Height = width;
+                  //}
               });
 
             target.SizeChanged += (s, e) =>

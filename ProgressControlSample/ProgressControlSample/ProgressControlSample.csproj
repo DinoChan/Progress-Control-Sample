@@ -98,6 +98,7 @@
     <Compile Include="Behaviors\AdjustToSquareBehavior.cs" />
     <Compile Include="Behaviors\ProgressBehavior.cs" />
     <Compile Include="Behaviors\RectangleToEllipseBehavior.cs" />
+    <Compile Include="Behaviors\RelativeOffsetBehavior.cs" />
     <Compile Include="FrameworkElementExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
