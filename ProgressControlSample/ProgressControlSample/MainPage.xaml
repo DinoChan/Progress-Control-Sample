@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel VerticalAlignment="Center">
-            <local:ProgressStateIndicator    
+            <local:ProgressStateIndicator  Opacity="1.1"   
                                       Padding="10" FontSize="50"
                 
                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
@@ -21,7 +21,7 @@
             <ListView x:Name="StateListView" Margin="10" SelectionChanged="StateListView_SelectionChanged">
                 
             </ListView>
-            <local:ProgressControl Content="Start" />
+            <local:ProgressControl Content="Start" Margin="100,0"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\AdjustToSquareBehavior.cs" />
+    <Compile Include="Behaviors\EllipseProgressBehavior.cs" />
     <Compile Include="Behaviors\ProgressBehavior.cs" />
     <Compile Include="Behaviors\RectangleToEllipseBehavior.cs" />
     <Compile Include="Behaviors\RelativeOffsetBehavior.cs" />
@@ -146,7 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.6</Version>
+      <Version>6.0.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
       <Version>2.1.1</Version>

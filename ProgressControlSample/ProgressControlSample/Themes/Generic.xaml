@@ -3,8 +3,9 @@
                     xmlns:local="using:ProgressControlSample"
                     xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls"
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-                 >
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d">
 
     <local:BorderToStrokeThicknessConverter x:Key="BorderToStrokeThicknessConverter" />
 
@@ -182,6 +183,8 @@
     <Style TargetType="local:ProgressControl">
         <Setter Property="IsTabStop"
                 Value="False" />
+        <Setter Property="BorderThickness"
+                Value="{ThemeResource ButtonBorderThemeThickness}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ProgressControl">
@@ -192,7 +195,44 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ProgressStates">
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0" To="Paused">
+                                    <!--<VisualTransition GeneratedDuration="0"
+                                                      From="Ready">
+                                        
+                                    </VisualTransition>-->
+                                    <!--<VisualTransition GeneratedDuration="0"
+                                                      To="Ready">
+                                       
+                                    </VisualTransition>-->
+                                    <VisualTransition 
+                                                      To="Started">
+                                        <Storyboard>
+                                            <DoubleAnimation BeginTime="0:0:0.7"
+                                                             Duration="0:0:0.2"
+                                                             To="1"
+                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                             Storyboard.TargetName="ProgressGrid">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition 
+                                                      From="Started">
+                                        <Storyboard>
+                                            <DoubleAnimation BeginTime="0:0:0"
+                                                             Duration="0:0:0.2"
+                                                             To="0"
+                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                             Storyboard.TargetName="ProgressGrid">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition GeneratedDuration="0"
+                                                      To="Paused">
                                         <Storyboard>
                                             <DoubleAnimation BeginTime="0:0:0.0"
                                                              Duration="0:0:0.7"
@@ -203,7 +243,8 @@
                                                     <CubicEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="CancelButton">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                           Storyboard.TargetName="CancelButton">
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>
                                                         <Visibility>Visible</Visibility>
@@ -221,15 +262,6 @@
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
 
-
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="ProgressStateIndicator">
-                                                <DiscreteObjectKeyFrame KeyTime="0">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <HorizontalAlignment>Center</HorizontalAlignment>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-
                                             <DoubleAnimation BeginTime="0:0:0"
                                                              Duration="0:0:0.7"
                                                              To="-0.6"
@@ -242,10 +274,11 @@
                                             </DoubleAnimation>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="Paused" GeneratedDuration="0">
+                                    <VisualTransition From="Paused"
+                                                      GeneratedDuration="0">
                                         <Storyboard>
 
-                                            <DoubleAnimation BeginTime="0:0:0.0"
+                                            <!--<DoubleAnimation BeginTime="0:0:0.0"
                                                              Duration="0:0:0.7"
                                                              To="0"
                                                              Storyboard.TargetProperty="(UIElement.Opacity)"
@@ -254,7 +287,8 @@
                                                     <CubicEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="CancelButton">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                           Storyboard.TargetName="CancelButton">
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>
                                                         <Visibility>Visible</Visibility>
@@ -265,8 +299,8 @@
                                                         <Visibility>Collapsed</Visibility>
                                                     </DiscreteObjectKeyFrame.Value>
                                                 </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation BeginTime="0:0:0"
+                                            </ObjectAnimationUsingKeyFrames>-->
+                                            <!--<DoubleAnimation BeginTime="0:0:0"
                                                              Duration="0:0:0.7"
                                                              To="0"
                                                              Storyboard.TargetProperty="(local:RelativeOffsetBehavior.OffsetX)"
@@ -275,22 +309,9 @@
                                                 <DoubleAnimation.EasingFunction>
                                                     <QuinticEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
+                                            </DoubleAnimation>-->
 
-
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="ProgressStateIndicator">
-                                                <DiscreteObjectKeyFrame KeyTime="0">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <HorizontalAlignment>Center</HorizontalAlignment>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.7">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <HorizontalAlignment>Stretch</HorizontalAlignment>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <DoubleAnimation BeginTime="0:0:0"
+                                            <!--<DoubleAnimation BeginTime="0:0:0"
                                                              Duration="0:0:0.7"
                                                              To="0"
                                                              Storyboard.TargetProperty="(local:RelativeOffsetBehavior.OffsetX)"
@@ -299,20 +320,25 @@
                                                 <DoubleAnimation.EasingFunction>
                                                     <QuinticEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
+                                            </DoubleAnimation>-->
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Ready" />
-                                <VisualState x:Name="Started" />
+                                <VisualState x:Name="Started">
+                                    <VisualState.Setters>
+                                        <Setter Target="ProgressGrid.(UIElement.Opacity)"
+                                                Value="0.9" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState x:Name="Completed" />
                                 <VisualState x:Name="Faulted" />
                                 <VisualState x:Name="Paused">
                                     <VisualState.Setters>
                                         <Setter Target="CancelButton.(UIElement.Visibility)"
                                                 Value="Visible" />
-                                        <Setter Target="ProgressStateIndicator.(FrameworkElement.HorizontalAlignment)" Value="Center"/>
-                                        <Setter Target="CancelButton.(UIElement.Opacity)" Value="1"/>
+                                        <Setter Target="CancelButton.(UIElement.Opacity)"
+                                                Value="1" />
                                         <Setter Target="IndicatorRelativeOffsetBehavior.(local:RelativeOffsetBehavior.OffsetX)"
                                                 Value="-0.6" />
                                         <Setter Target="ButtonRelativeOffsetBehavior.(local:RelativeOffsetBehavior.OffsetX)"
@@ -322,22 +348,44 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
-                            
-                            <local:ProgressStateIndicator Content="{TemplateBinding Content}"
-                                                          State="{TemplateBinding State}"
-                                                          x:Name="ProgressStateIndicator"
-                                                          HorizontalAlignment="Stretch">
+                            <Grid x:Name="InnerGrid" HorizontalAlignment="Center">
                                 <interactivity:Interaction.Behaviors>
-                                    <local:RelativeOffsetBehavior x:Name="IndicatorRelativeOffsetBehavior" OffsetX="0"/>
+                                    <local:RelativeOffsetBehavior x:Name="IndicatorRelativeOffsetBehavior"
+                                                                  OffsetX="0" />
                                 </interactivity:Interaction.Behaviors>
-                            </local:ProgressStateIndicator>
+                                <local:ProgressStateIndicator Content="{TemplateBinding Content}"
+                                                              State="{TemplateBinding State}"
+                                                              x:Name="ProgressStateIndicator"
+                                                              HorizontalAlignment="Center">
+                                </local:ProgressStateIndicator>
+                                <Grid x:Name="ProgressGrid" Opacity="0">
+                                <Ellipse x:Name="Ellipse"
+                                         Stroke="LightSeaGreen"
+                                         StrokeThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderThickness,Converter={StaticResource BorderToStrokeThicknessConverter}}"
+                                         
+                                     
+                                         local:FrameworkElementExtensions.IsAdjustToSquare="True"
+                                         RenderTransformOrigin="0.5,0.5">
+                                    <!--<interactivity:Interaction.Behaviors>
+                                        <local:EllipseProgressBehavior Value="{TemplateBinding Value}"
+                                                                       Minimum="{TemplateBinding Minimum}"
+                                                                       Maximum="{TemplateBinding Maximum}"/>
+                                    </interactivity:Interaction.Behaviors>-->
+                                    <Ellipse.RenderTransform>
+                                        <RotateTransform Angle="-90" />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                                </Grid>
+                            </Grid>
                             <Button x:Name="CancelButton"
                                     Visibility="Collapsed"
                                     local:FrameworkElementExtensions.IsAdjustToSquare="True"
                                     HorizontalAlignment="Center"
-                                    Style="{StaticResource CancelButtonStyle}" Opacity="0">
+                                    Style="{StaticResource CancelButtonStyle}"
+                                    Opacity="0">
                                 <interactivity:Interaction.Behaviors>
-                                    <local:RelativeOffsetBehavior x:Name="ButtonRelativeOffsetBehavior" OffsetX="0"/>
+                                    <local:RelativeOffsetBehavior x:Name="ButtonRelativeOffsetBehavior"
+                                                                  OffsetX="0" />
                                 </interactivity:Interaction.Behaviors>
                             </Button>
 
@@ -377,7 +425,8 @@
                 Value="True" />
         <Setter Property="FocusVisualMargin"
                 Value="-3" />
-        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="IsTabStop"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ProgressStateIndicator">
@@ -665,8 +714,8 @@
                         <interactivity:Interaction.Behaviors>
                             <interactivity:BehaviorCollection>
                                 <local:AdjustToSquareBehavior x:Name="AdjustToSquareBehavior"
-                                                          ContentElement="{Binding ElementName=InnerGrid}"
-                                                          Progress="0" />
+                                                              ContentElement="{Binding ElementName=InnerGrid}"
+                                                              Progress="0" />
                             </interactivity:BehaviorCollection>
                         </interactivity:Interaction.Behaviors>
 
