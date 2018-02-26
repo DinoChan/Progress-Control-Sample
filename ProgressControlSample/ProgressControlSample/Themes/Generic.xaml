@@ -5,6 +5,7 @@
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
                     mc:Ignorable="d">
 
     <local:BorderToStrokeThicknessConverter x:Key="BorderToStrokeThicknessConverter" />
@@ -195,55 +196,11 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ProgressStates">
                                 <VisualStateGroup.Transitions>
-                                    <!--<VisualTransition GeneratedDuration="0"
-                                                      From="Ready">
-                                        
-                                    </VisualTransition>-->
-                                    <!--<VisualTransition GeneratedDuration="0"
-                                                      To="Ready">
-                                       
-                                    </VisualTransition>-->
-                                    <VisualTransition 
-                                                      To="Started">
-                                        <Storyboard>
-                                            <DoubleAnimation BeginTime="0:0:0.7"
-                                                             Duration="0:0:0.2"
-                                                             To="1"
-                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                             Storyboard.TargetName="ProgressGrid">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseIn" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition 
-                                                      From="Started">
-                                        <Storyboard>
-                                            <DoubleAnimation BeginTime="0:0:0"
-                                                             Duration="0:0:0.2"
-                                                             To="0"
-                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                             Storyboard.TargetName="ProgressGrid">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseIn" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </VisualTransition>
+                                    
                                     <VisualTransition GeneratedDuration="0"
-                                                      To="Paused">
+                                                      To="Paused" >
                                         <Storyboard>
-                                            <DoubleAnimation BeginTime="0:0:0.0"
-                                                             Duration="0:0:0.7"
-                                                             To="1"
-                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                             Storyboard.TargetName="CancelButton">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                          <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
                                                                            Storyboard.TargetName="CancelButton">
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>
@@ -275,32 +232,21 @@
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="Paused"
+                                                      To="Started"
                                                       GeneratedDuration="0">
                                         <Storyboard>
 
-                                            <!--<DoubleAnimation BeginTime="0:0:0.0"
-                                                             Duration="0:0:0.7"
-                                                             To="0"
-                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                             Storyboard.TargetName="CancelButton">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
+                                          
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
                                                                            Storyboard.TargetName="CancelButton">
-                                                <DiscreteObjectKeyFrame KeyTime="0">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <Visibility>Visible</Visibility>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.7">
+                                           
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:00">
                                                     <DiscreteObjectKeyFrame.Value>
                                                         <Visibility>Collapsed</Visibility>
                                                     </DiscreteObjectKeyFrame.Value>
                                                 </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>-->
-                                            <!--<DoubleAnimation BeginTime="0:0:0"
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation BeginTime="0:0:0"
                                                              Duration="0:0:0.7"
                                                              To="0"
                                                              Storyboard.TargetProperty="(local:RelativeOffsetBehavior.OffsetX)"
@@ -309,9 +255,9 @@
                                                 <DoubleAnimation.EasingFunction>
                                                     <QuinticEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>-->
+                                            </DoubleAnimation>
 
-                                            <!--<DoubleAnimation BeginTime="0:0:0"
+                                            <DoubleAnimation BeginTime="0:0:0"
                                                              Duration="0:0:0.7"
                                                              To="0"
                                                              Storyboard.TargetProperty="(local:RelativeOffsetBehavior.OffsetX)"
@@ -320,15 +266,72 @@
                                                 <DoubleAnimation.EasingFunction>
                                                     <QuinticEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>-->
+                                            </DoubleAnimation>
+
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                           Storyboard.TargetName="Ellipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+
+                                    <VisualTransition From="Paused"
+                                                      To="Ready"
+                                                      GeneratedDuration="0">
+                                        <Storyboard>
+
+                                           
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                           Storyboard.TargetName="CancelButton">
+                                               
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation BeginTime="0:0:0"
+                                                             Duration="0:0:0.7"
+                                                             To="0"
+                                                             Storyboard.TargetProperty="(local:RelativeOffsetBehavior.OffsetX)"
+                                                             Storyboard.TargetName="ButtonRelativeOffsetBehavior"
+                                                             EnableDependentAnimation="True">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuinticEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+
+                                            <DoubleAnimation BeginTime="0:0:0"
+                                                             Duration="0:0:0.7"
+                                                             To="0"
+                                                             Storyboard.TargetProperty="(local:RelativeOffsetBehavior.OffsetX)"
+                                                             Storyboard.TargetName="IndicatorRelativeOffsetBehavior"
+                                                             EnableDependentAnimation="True">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuinticEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                           Storyboard.TargetName="Ellipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Ready" />
                                 <VisualState x:Name="Started">
                                     <VisualState.Setters>
-                                        <Setter Target="ProgressGrid.(UIElement.Opacity)"
-                                                Value="0.9" />
+                                        <Setter Target="Ellipse.Visibility"
+                                                Value="Visible" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Completed" />
@@ -348,7 +351,8 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
-                            <Grid x:Name="InnerGrid" HorizontalAlignment="Center">
+                            <Grid x:Name="InnerGrid"
+                                  HorizontalAlignment="Center">
                                 <interactivity:Interaction.Behaviors>
                                     <local:RelativeOffsetBehavior x:Name="IndicatorRelativeOffsetBehavior"
                                                                   OffsetX="0" />
@@ -358,23 +362,32 @@
                                                               x:Name="ProgressStateIndicator"
                                                               HorizontalAlignment="Center">
                                 </local:ProgressStateIndicator>
-                                <Grid x:Name="ProgressGrid" Opacity="0">
-                                <Ellipse x:Name="Ellipse"
-                                         Stroke="LightSeaGreen"
-                                         StrokeThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderThickness,Converter={StaticResource BorderToStrokeThicknessConverter}}"
-                                         
-                                     
-                                         local:FrameworkElementExtensions.IsAdjustToSquare="True"
-                                         RenderTransformOrigin="0.5,0.5">
-                                    <!--<interactivity:Interaction.Behaviors>
+                                <Grid x:Name="ProgressGrid">
+                                    <Ellipse x:Name="Ellipse"
+                                             Stroke="LightSeaGreen"
+                                             StrokeThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderThickness,Converter={StaticResource BorderToStrokeThicknessConverter}}"
+                                             Visibility="Collapsed"
+                                             local:FrameworkElementExtensions.IsAdjustToSquare="True"
+                                             RenderTransformOrigin="0.5,0.5">
+                                        <!--<interactivity:Interaction.Behaviors>
                                         <local:EllipseProgressBehavior Value="{TemplateBinding Value}"
                                                                        Minimum="{TemplateBinding Minimum}"
                                                                        Maximum="{TemplateBinding Maximum}"/>
                                     </interactivity:Interaction.Behaviors>-->
-                                    <Ellipse.RenderTransform>
-                                        <RotateTransform Angle="-90" />
-                                    </Ellipse.RenderTransform>
-                                </Ellipse>
+                                        <animations:Implicit.HideAnimations>
+                                            <animations:ScalarAnimation Target="Opacity"
+                                                                        Duration="0:0:1"
+                                                                        To="0.0"></animations:ScalarAnimation>
+                                        </animations:Implicit.HideAnimations>
+                                        <animations:Implicit.ShowAnimations>
+                                            <animations:OpacityAnimation Duration="0:0:3"
+                                                                         From="0"
+                                                                         To="1.0"/>
+                                        </animations:Implicit.ShowAnimations>
+                                        <Ellipse.RenderTransform>
+                                            <RotateTransform Angle="-90" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
                                 </Grid>
                             </Grid>
                             <Button x:Name="CancelButton"
@@ -387,6 +400,17 @@
                                     <local:RelativeOffsetBehavior x:Name="ButtonRelativeOffsetBehavior"
                                                                   OffsetX="0" />
                                 </interactivity:Interaction.Behaviors>
+                                <animations:Implicit.HideAnimations>
+                                    <animations:ScalarAnimation Target="Opacity"
+                                                                Duration="0:0:0.7"
+                                                                From="1.0"
+                                                                To="0.0"/>
+                                </animations:Implicit.HideAnimations>
+                                <animations:Implicit.ShowAnimations>
+                                    <animations:OpacityAnimation Duration="0:0:0.7"
+                                                                 From="0"
+                                                                 To="1.0"/>
+                                </animations:Implicit.ShowAnimations>
                             </Button>
 
                         </Grid>
