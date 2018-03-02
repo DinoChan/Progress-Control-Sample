@@ -28,7 +28,7 @@
                                            FontSize="50"
                                            VerticalAlignment="Top"
                                            HorizontalAlignment="Center"
-                                           Content="Start"
+                                           Content="Download"
                                            State="{Binding ElementName=StateListView,Path=SelectedItem.Tag}" />
             <ListView x:Name="StateListView"
                       Margin="10"/>
@@ -50,7 +50,7 @@
                                BorderThickness="5"
                                VerticalAlignment="Top"
                                HorizontalAlignment="Center"
-                               Content="Start"
+                               Content="Download"
                                StateChanged="ProgressControlStateChanged"
                                />
         <TextBlock Margin="10"
@@ -69,30 +69,7 @@
                                BorderThickness="5"
                                VerticalAlignment="Top"
                                HorizontalAlignment="Center"
-                               Content="Start"
+                               Content="Download"
                                StateChanged="FaultProgressControlStateChanged" />
-        <!--<StackPanel VerticalAlignment="Center">
-            <local:ProgressStateIndicator  Opacity="1.1"
-                                           Padding="10"
-                                           FontSize="50"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Content="Start"
-                                           State="{Binding ElementName=StateListView,Path=SelectedItem.Tag}" />
-
-            <ListView x:Name="StateListView"
-                      Margin="10"
-                     >
-
-            </ListView>
-            <local:ProgressControl x:Name="ProgressControl"
-                                   Content="Start"
-                                   Margin="100,0"
-                                   StateChanged="ProgressControl_StateChanged"
-                                   Maximum="100"
-                                   Minimum="0"
-                                   HorizontalAlignment="Right"
-                                   Width="70" />
-        </StackPanel>-->
     </Grid>
 </UserControl>
