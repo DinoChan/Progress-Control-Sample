@@ -50,7 +50,6 @@ namespace ProgressControlSample
                 target.OnStateChanged(oldValue, newValue);
         }
 
-
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -61,8 +60,6 @@ namespace ProgressControlSample
         {
             UpdateVisualStates(true);
         }
-
-
 
         private void UpdateVisualStates(bool useTransitions)
         {

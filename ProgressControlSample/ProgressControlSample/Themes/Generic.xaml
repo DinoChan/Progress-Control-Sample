@@ -411,7 +411,7 @@
                                         <animations:Implicit.HideAnimations>
                                             <animations:ScalarAnimation Target="Opacity"
                                                                         Duration="0:0:1"
-                                                                        To="0.0"></animations:ScalarAnimation>
+                                                                        To="0.0"/>
                                         </animations:Implicit.HideAnimations>
                                         <animations:Implicit.ShowAnimations>
                                             <animations:OpacityAnimation Duration="0:0:3"

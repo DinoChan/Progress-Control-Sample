@@ -39,7 +39,6 @@ namespace ProgressControlSample
             DefaultStyleKey = typeof(ProgressControl);
         }
 
-
         /// <summary>
         ///     获取或设置Content的值
         /// </summary>
@@ -74,7 +73,6 @@ namespace ProgressControlSample
         public event EventHandler<ProgressStateEventArgs> StateChanged;
         public event EventHandler<ProgressStateEventArgs> StateChanging;
 
-        public event EventHandler Completed;
         public event EventHandler Cancelled;
 
         private static void OnStateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -140,17 +138,6 @@ namespace ProgressControlSample
             StateChanged?.Invoke(this,new ProgressStateEventArgs(oldValue,newValue));
         }
 
-        protected override void OnValueChanged(double oldValue, double newValue)
-        {
-            base.OnValueChanged(oldValue, newValue);
-            //if (newValue >= Maximum)
-            //{
-            //    if (ChangeStateCore(ProgressState.Completed))
-            //        Completed?.Invoke(this, EventArgs.Empty);
-            //}
-        }
-
-
         private void UpdateVisualStates(bool useTransitions)
         {
             string progressState;
@@ -181,9 +168,6 @@ namespace ProgressControlSample
         private bool ChangeStateCore(ProgressState newstate)
         {
             var args = new ProgressStateEventArgs(State, newstate);
-            //if (args.OldValue == ProgressState.Started && args.NewValue == ProgressState.Ready)
-            //    args.Cancel = true;
-
             OnStateChanging(args);
             StateChanging?.Invoke(this, args);
             if (args.Cancel)
