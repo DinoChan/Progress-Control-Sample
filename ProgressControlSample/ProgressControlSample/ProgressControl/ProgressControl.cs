@@ -71,8 +71,8 @@ namespace ProgressControlSample
         {
         }
 
-        public event EventHandler StateChanged;
-        public event EventHandler<ProgressStateChangingEventArgs> StateChanging;
+        public event EventHandler<ProgressStateEventArgs> StateChanged;
+        public event EventHandler<ProgressStateEventArgs> StateChanging;
 
         public event EventHandler Completed;
         public event EventHandler Cancelled;
@@ -137,13 +137,17 @@ namespace ProgressControlSample
         protected virtual void OnStateChanged(ProgressState oldValue, ProgressState newValue)
         {
             UpdateVisualStates(true);
+            StateChanged?.Invoke(this,new ProgressStateEventArgs(oldValue,newValue));
         }
 
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
-            if (ChangeStateCore(ProgressState.Completed))
-                Completed?.Invoke(this, EventArgs.Empty);
+            if (newValue >= Maximum)
+            {
+                if (ChangeStateCore(ProgressState.Completed))
+                    Completed?.Invoke(this, EventArgs.Empty);
+            }
         }
 
 
@@ -176,7 +180,7 @@ namespace ProgressControlSample
 
         private bool ChangeStateCore(ProgressState newstate)
         {
-            var args = new ProgressStateChangingEventArgs(State, newstate);
+            var args = new ProgressStateEventArgs(State, newstate);
             //if (args.OldValue == ProgressState.Started && args.NewValue == ProgressState.Ready)
             //    args.Cancel = true;
 
@@ -189,8 +193,9 @@ namespace ProgressControlSample
             return true;
         }
 
-        protected virtual void OnStateChanging(ProgressStateChangingEventArgs args)
+        protected virtual void OnStateChanging(ProgressStateEventArgs args)
         {
+            
         }
     }
 }

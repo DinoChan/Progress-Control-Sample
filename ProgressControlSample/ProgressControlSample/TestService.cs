@@ -30,12 +30,12 @@ namespace ProgressControlSample
             {
                 ProgressChanged?.Invoke(this, _progress);
                 await Task.Delay(1000);
-                while (_progress < 1)
+                while (_progress < 100)
                 {
                     await Task.Delay(100);
-                    _progress += 0.03;
+                    _progress += 3;
                     ProgressChanged?.Invoke(this, _progress);
-                    if (_progress > 0.7 && throwException)
+                    if (_progress > 70 && throwException)
                         throw new Exception("test");
 
                     if (IsPaused)

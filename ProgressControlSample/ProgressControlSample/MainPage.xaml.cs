@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,17 +26,6 @@ namespace ProgressControlSample
         public MainPage()
         {
             this.InitializeComponent();
-            StateListView.Items.Add(new ListViewItem {Content = "Ready", Tag = ProgressState.Ready});
-            StateListView.Items.Add(new ListViewItem { Content = "Started", Tag = ProgressState.Started });
-            StateListView.Items.Add(new ListViewItem { Content = "Paused", Tag = ProgressState.Paused });
-            StateListView.Items.Add(new ListViewItem { Content = "Completed", Tag = ProgressState.Completed });
-            StateListView.Items.Add(new ListViewItem { Content = "Fault", Tag = ProgressState.Faulted });
-            StateListView.SelectedIndex = 0;
-        }
-
-        private void StateListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProgressControlSample
 {
-    public class ProgressStateChangingEventArgs : EventArgs
+    public class ProgressStateEventArgs : EventArgs
     {
-        public ProgressStateChangingEventArgs(ProgressState oldValue, ProgressState newValue)
+        public ProgressStateEventArgs(ProgressState oldValue, ProgressState newValue)
         {
             OldValue = oldValue;
             NewValue = newValue;

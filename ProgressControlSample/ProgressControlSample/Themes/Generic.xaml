@@ -184,23 +184,26 @@
     <Style TargetType="local:ProgressControl">
         <Setter Property="IsTabStop"
                 Value="False" />
+        <Setter Property="Background"
+                Value="{ThemeResource ButtonBackground}" />
+        <Setter Property="Foreground"
+                Value="{ThemeResource ButtonForeground}" />
+        <Setter Property="BorderBrush"
+                Value="#FFCCCCCC" />
         <Setter Property="BorderThickness"
                 Value="{ThemeResource ButtonBorderThemeThickness}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ProgressControl">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            x:Name="Root">
+                    <Border x:Name="Root">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ProgressStates">
                                 <VisualStateGroup.Transitions>
-                                    
+
                                     <VisualTransition GeneratedDuration="0"
-                                                      To="Paused" >
+                                                      To="Paused">
                                         <Storyboard>
-                                          <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
                                                                            Storyboard.TargetName="CancelButton">
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>
@@ -236,10 +239,10 @@
                                                       GeneratedDuration="0">
                                         <Storyboard>
 
-                                          
+
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
                                                                            Storyboard.TargetName="CancelButton">
-                                           
+
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:00">
                                                     <DiscreteObjectKeyFrame.Value>
                                                         <Visibility>Collapsed</Visibility>
@@ -284,10 +287,10 @@
                                                       GeneratedDuration="0">
                                         <Storyboard>
 
-                                           
+
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
                                                                            Storyboard.TargetName="CancelButton">
-                                               
+
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0">
                                                     <DiscreteObjectKeyFrame.Value>
                                                         <Visibility>Collapsed</Visibility>
@@ -351,50 +354,13 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
-                            <Grid x:Name="InnerGrid"
-                                  HorizontalAlignment="Center">
-                                <interactivity:Interaction.Behaviors>
-                                    <local:RelativeOffsetBehavior x:Name="IndicatorRelativeOffsetBehavior"
-                                                                  OffsetX="0" />
-                                </interactivity:Interaction.Behaviors>
-                                <local:ProgressStateIndicator Content="{TemplateBinding Content}"
-                                                              State="{TemplateBinding State}"
-                                                              x:Name="ProgressStateIndicator"
-                                                              HorizontalAlignment="Center">
-                                </local:ProgressStateIndicator>
-                                <Grid x:Name="ProgressGrid">
-                                    <Ellipse x:Name="Ellipse"
-                                             Stroke="LightSeaGreen"
-                                             StrokeThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderThickness,Converter={StaticResource BorderToStrokeThicknessConverter}}"
-                                             Visibility="Collapsed"
-                                             local:FrameworkElementExtensions.IsAdjustToSquare="True"
-                                             RenderTransformOrigin="0.5,0.5">
-                                        <!--<interactivity:Interaction.Behaviors>
-                                        <local:EllipseProgressBehavior Value="{TemplateBinding Value}"
-                                                                       Minimum="{TemplateBinding Minimum}"
-                                                                       Maximum="{TemplateBinding Maximum}"/>
-                                    </interactivity:Interaction.Behaviors>-->
-                                        <animations:Implicit.HideAnimations>
-                                            <animations:ScalarAnimation Target="Opacity"
-                                                                        Duration="0:0:1"
-                                                                        To="0.0"></animations:ScalarAnimation>
-                                        </animations:Implicit.HideAnimations>
-                                        <animations:Implicit.ShowAnimations>
-                                            <animations:OpacityAnimation Duration="0:0:3"
-                                                                         From="0"
-                                                                         To="1.0"/>
-                                        </animations:Implicit.ShowAnimations>
-                                        <Ellipse.RenderTransform>
-                                            <RotateTransform Angle="-90" />
-                                        </Ellipse.RenderTransform>
-                                    </Ellipse>
-                                </Grid>
-                            </Grid>
                             <Button x:Name="CancelButton"
                                     Visibility="Collapsed"
+                                    FontSize="{TemplateBinding FontSize}"
                                     local:FrameworkElementExtensions.IsAdjustToSquare="True"
                                     HorizontalAlignment="Center"
                                     Style="{StaticResource CancelButtonStyle}"
+                                    TabIndex="2"
                                     Opacity="0">
                                 <interactivity:Interaction.Behaviors>
                                     <local:RelativeOffsetBehavior x:Name="ButtonRelativeOffsetBehavior"
@@ -404,14 +370,60 @@
                                     <animations:ScalarAnimation Target="Opacity"
                                                                 Duration="0:0:0.7"
                                                                 From="1.0"
-                                                                To="0.0"/>
+                                                                To="0.0" />
                                 </animations:Implicit.HideAnimations>
                                 <animations:Implicit.ShowAnimations>
                                     <animations:OpacityAnimation Duration="0:0:0.7"
                                                                  From="0"
-                                                                 To="1.0"/>
+                                                                 To="1.0" />
                                 </animations:Implicit.ShowAnimations>
                             </Button>
+
+                            <Grid x:Name="InnerGrid"
+                                  HorizontalAlignment="Center">
+                                <interactivity:Interaction.Behaviors>
+                                    <local:RelativeOffsetBehavior x:Name="IndicatorRelativeOffsetBehavior"
+                                                                  OffsetX="0" />
+                                </interactivity:Interaction.Behaviors>
+                                <local:ProgressStateIndicator Content="{TemplateBinding Content}"
+                                                              State="{TemplateBinding State}"
+                                                              Padding="{TemplateBinding Padding}"
+                                                              FontSize="{TemplateBinding FontSize}"
+                                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                                              Background="{TemplateBinding Background}"
+                                                              x:Name="ProgressStateIndicator"
+                                                              HorizontalAlignment="Center"
+                                                              TabIndex="1">
+                                </local:ProgressStateIndicator>
+                                <Grid x:Name="ProgressGrid">
+                                    <Ellipse x:Name="Ellipse"
+                                             Stroke="LightSeaGreen"
+                                             StrokeThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderThickness,Converter={StaticResource BorderToStrokeThicknessConverter}}"
+                                             Visibility="Collapsed"
+                                             local:FrameworkElementExtensions.IsAdjustToSquare="True"
+                                             RenderTransformOrigin="0.5,0.5">
+                                        <interactivity:Interaction.Behaviors>
+                                            <local:EllipseProgressBehavior Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Value}"
+                                                                           Minimum="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Minimum}"
+                                                                           Maximum="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Maximum}" />
+                                        </interactivity:Interaction.Behaviors>
+                                        <animations:Implicit.HideAnimations>
+                                            <animations:ScalarAnimation Target="Opacity"
+                                                                        Duration="0:0:1"
+                                                                        To="0.0"></animations:ScalarAnimation>
+                                        </animations:Implicit.HideAnimations>
+                                        <animations:Implicit.ShowAnimations>
+                                            <animations:OpacityAnimation Duration="0:0:3"
+                                                                         From="0"
+                                                                         To="1.0" />
+                                        </animations:Implicit.ShowAnimations>
+                                        <Ellipse.RenderTransform>
+                                            <RotateTransform Angle="-90" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
 
                         </Grid>
                     </Border>

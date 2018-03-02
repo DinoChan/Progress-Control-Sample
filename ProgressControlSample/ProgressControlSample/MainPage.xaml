@@ -1,27 +1,16 @@
-﻿<Page
-    x:Class="ProgressControlSample.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ProgressControlSample"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="ProgressControlSample.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:ProgressControlSample"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel VerticalAlignment="Center">
-            <local:ProgressStateIndicator  Opacity="1.1"   
-                                      Padding="10" FontSize="50"
-                
-                                      VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                          Content="Start"
-                                 State="{Binding ElementName=StateListView,Path=SelectedItem.Tag}"
-                
-                                         />
-            
-            <ListView x:Name="StateListView" Margin="10" SelectionChanged="StateListView_SelectionChanged">
-                
-            </ListView>
-            <local:ProgressControl Content="Start" Margin="100,0"/>
-        </StackPanel>
+        <Pivot>
+            <PivotItem Header="Basic">
+                <local:BasicPage/>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

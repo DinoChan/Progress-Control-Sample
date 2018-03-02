@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BasicPage.xaml.cs">
+      <DependentUpon>BasicPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Behaviors\AdjustToSquareBehavior.cs" />
     <Compile Include="Behaviors\EllipseProgressBehavior.cs" />
     <Compile Include="Behaviors\ProgressBehavior.cs" />
@@ -104,13 +107,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgressControl\ProgressStateChangingEventArgs.cs" />
+    <Compile Include="ProgressControl\ProgressStateEventArgs.cs" />
     <Compile Include="ProgressStateIndicator\ProgressStateIndicator.Constants.cs" />
     <Compile Include="ProgressStateIndicator\ProgressStateIndicator.cs" />
     <Compile Include="ProgressControl\ProgressControl.cs" />
     <Compile Include="ProgressControl\ProgressState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SizeBridge.cs" />
     <Compile Include="TestService.cs" />
     <Compile Include="Converter\BorderToStrokeThicknessConverter.cs" />
   </ItemGroup>
@@ -136,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="BasicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
