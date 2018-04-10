@@ -8,6 +8,9 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot>
+            <PivotItem Header="Download Manager">
+                <local:DownloadPage />
+            </PivotItem>
             <PivotItem Header="Basic">
                 <local:BasicPage/>
             </PivotItem>
