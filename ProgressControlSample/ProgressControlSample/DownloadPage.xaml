@@ -10,6 +10,11 @@
     d:DesignWidth="400">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Content="Add Links" Click="OnAddLinks"/>
+        <ListView Grid.Row="1"/>
     </Grid>
 </UserControl>

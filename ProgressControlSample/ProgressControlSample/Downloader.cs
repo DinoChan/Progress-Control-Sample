@@ -29,10 +29,10 @@ namespace ProgressControlSample
 
         private Downloader(Uri uri)
         {
-            _uri = uri;
+            Uri = uri;
         }
 
-        private readonly Uri _uri;
+        public Uri Uri { get; }
 
         public string Name { get; private set; }
 
@@ -75,7 +75,7 @@ namespace ProgressControlSample
         private async Task LoadInformation(CancellationToken cancellationToken)
         {
             await Task.Delay(TimeSpan.FromSeconds(1));
-            Name = _uri.AbsoluteUri;
+            Name = Uri.AbsoluteUri;
             var random = new Random();
             const int maxValue = 10 * 1024 * 1024;
             TotalBytes = random.Next(maxValue);
@@ -89,8 +89,15 @@ namespace ProgressControlSample
 
         private async Task LoadInformation()
         {
-            await Task.Delay(TimeSpan.FromSeconds(1));
-            Name = _uri.AbsoluteUri;
+            try
+            {
+                await Task.Delay(1000);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            Name = Uri.AbsoluteUri;
             var random = new Random();
             const int maxValue = 10 * 1024 * 1024;
             TotalBytes = random.Next(maxValue);

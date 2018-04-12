@@ -532,7 +532,7 @@
                                                                     Value="{ThemeResource ButtonBackgroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Rectangle"
-                                                                       Storyboard.TargetProperty="StrokeBrush">
+                                                                       Storyboard.TargetProperty="Stroke">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource ButtonBorderBrushDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>

@@ -4,21 +4,55 @@
                xmlns:local="using:ProgressControlSample"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
                mc:Ignorable="d"
                PrimaryButtonText="X"
                Title="Add New Download">
-   
+
     <ContentDialog.Resources>
 
     </ContentDialog.Resources>
-    <Grid>
+    <Grid Width="400">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <local:ProgressControl/>
+
+        <CommandBar   DefaultLabelPosition="Right">
+            <AppBarButton Content="Normal" Label="Normal" Click="OnAddNormalLink">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xE948;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="TimeOut" Click="OnAddTimeOutLink">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xE948;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="Error" Click="OnAddErrorLink">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xE948;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+        <ListView x:Name="LinksElkement"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  Grid.Row="1"
+                  Margin="8" 
+                  ItemsSource="{x:Bind Links}"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right">
+            <controls:InAppNotification VerticalAlignment="Center"
+                                        x:Name="InAppNotification" />
+            <local:ProgressControl x:Name="ProgressControl"
+                                   Maximum="{x:Bind TotalLinks}"
+                                   Value="{x:Bind FinishedTasks}"
+                                   StateChanged="OnStateChanged" />
         </StackPanel>
     </Grid>
 </ContentDialog>
