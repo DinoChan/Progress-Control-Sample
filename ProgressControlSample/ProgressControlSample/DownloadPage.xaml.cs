@@ -32,13 +32,13 @@ namespace ProgressControlSample
         {
             var dialog = new AddDownloadDialog();
             await dialog.ShowAsync();
-            if (dialog.Downloads == null)
-                return;
+            //if (dialog.Downloads == null)
+            //    return;
 
-            foreach (var item in dialog.Downloads)
-            {
-                Downloads.Add(item);
-            }
+            //foreach (var item in dialog.Downloads)
+            //{
+            //    Downloads.Add(item);
+            //}
 
         }
     }

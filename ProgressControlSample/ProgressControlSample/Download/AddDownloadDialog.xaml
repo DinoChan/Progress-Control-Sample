@@ -44,15 +44,18 @@
                   Grid.Row="1"
                   Margin="8" 
                   ItemsSource="{x:Bind Links}"/>
+        
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Right">
             <controls:InAppNotification VerticalAlignment="Center"
                                         x:Name="InAppNotification" />
+           
             <local:ProgressControl x:Name="ProgressControl"
                                    Maximum="{x:Bind TotalLinks}"
                                    Value="{x:Bind FinishedTasks}"
-                                   StateChanged="OnStateChanged" />
+                                   StateChanged="OnStateChanged" 
+                                   Content="Download"/>
         </StackPanel>
     </Grid>
 </ContentDialog>

@@ -34,9 +34,12 @@ namespace ProgressControlSample.Download
         public AddDownloadDialog()
         {
             this.InitializeComponent();
-            ProgressControl.IsEnabled = false;
-            Links.CollectionChanged+= (s, e) => ProgressControl.IsEnabled = Links.Any();
+            //ProgressControl.IsEnabled = false;
+            //Links.CollectionChanged+= (s, e) => ProgressControl.IsEnabled = Links.Any();
+           
         }
+
+        
 
         public ObservableCollection<Uri> Links { get; } = new ObservableCollection<Uri>();
         private readonly List<Downloader> _downloads = new List<Downloader>();
@@ -157,6 +160,9 @@ namespace ProgressControlSample.Download
                             _cancellationTokenSource = new CancellationTokenSource();
                             await AddNewDownload(_cancellationTokenSource.Token);
                             Downloads = _downloads;
+                            ProgressControl.State = ProgressState.Completed;
+                            await Task.Delay(TimeSpan.FromSeconds(2));
+                            Hide();
                         }
                         catch (OperationCanceledException ex)
                         {
@@ -170,8 +176,6 @@ namespace ProgressControlSample.Download
                     }
                     break;
                 case ProgressState.Completed:
-                    await Task.Delay(TimeSpan.FromSeconds(2));
-                    Hide();
                     break;
                 case ProgressState.Faulted:
                     _downloads.Clear();
@@ -205,5 +209,7 @@ namespace ProgressControlSample.Download
         {
             Links.Add(new Uri("http://errorLink" + _count++, UriKind.RelativeOrAbsolute));
         }
+
+       
     }
 }

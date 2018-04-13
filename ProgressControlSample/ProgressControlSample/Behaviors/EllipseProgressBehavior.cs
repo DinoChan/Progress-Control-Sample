@@ -122,7 +122,11 @@ namespace ProgressControlSample
 
             var totalLength = GetTotalLength();
             totalLength = totalLength / AssociatedObject.StrokeThickness;
-            var progress = (Value - Minimum) / (Maximum - Minimum);
+            var total = Maximum - Minimum;
+            if (total <= 0)
+                total = 1;
+
+            var progress = (Value - Minimum) / total;
             var section = progress * totalLength;
             var result = new DoubleCollection { section, double.MaxValue };
             AssociatedObject.StrokeDashArray = result;

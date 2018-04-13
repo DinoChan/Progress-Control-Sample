@@ -366,12 +366,12 @@
                                     <local:RelativeOffsetBehavior x:Name="ButtonRelativeOffsetBehavior"
                                                                   OffsetX="0" />
                                 </interactivity:Interaction.Behaviors>
-                                <animations:Implicit.HideAnimations>
+                                <!--<animations:Implicit.HideAnimations>
                                     <animations:ScalarAnimation Target="Opacity"
                                                                 Duration="0:0:0.7"
                                                                 From="1.0"
                                                                 To="0.0" />
-                                </animations:Implicit.HideAnimations>
+                                </animations:Implicit.HideAnimations>-->
                                 <animations:Implicit.ShowAnimations>
                                     <animations:OpacityAnimation Duration="0:0:0.7"
                                                                  From="0"
@@ -408,11 +408,11 @@
                                                                            Minimum="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Minimum}"
                                                                            Maximum="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Maximum}" />
                                         </interactivity:Interaction.Behaviors>
-                                        <animations:Implicit.HideAnimations>
+                                        <!--<animations:Implicit.HideAnimations>
                                             <animations:ScalarAnimation Target="Opacity"
                                                                         Duration="0:0:1"
                                                                         To="0.0"/>
-                                        </animations:Implicit.HideAnimations>
+                                        </animations:Implicit.HideAnimations>-->
                                         <animations:Implicit.ShowAnimations>
                                             <animations:OpacityAnimation Duration="0:0:3"
                                                                          From="0"
