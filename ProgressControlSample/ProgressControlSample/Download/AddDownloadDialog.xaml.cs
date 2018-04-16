@@ -35,8 +35,8 @@ namespace ProgressControlSample.Download
         {
             this.InitializeComponent();
             //ProgressControl.IsEnabled = false;
-            //Links.CollectionChanged+= (s, e) => ProgressControl.IsEnabled = Links.Any();
-           
+            //Links.CollectionChanged += (s, e) => ProgressControl.IsEnabled = Links.Any();
+
         }
 
         
@@ -155,24 +155,24 @@ namespace ProgressControlSample.Download
                     break;
                 case ProgressState.Started:
                     {
-                        try
-                        {
-                            _cancellationTokenSource = new CancellationTokenSource();
-                            await AddNewDownload(_cancellationTokenSource.Token);
-                            Downloads = _downloads;
-                            ProgressControl.State = ProgressState.Completed;
-                            await Task.Delay(TimeSpan.FromSeconds(2));
-                            Hide();
-                        }
-                        catch (OperationCanceledException ex)
-                        {
-                            InAppNotification.Show("Task Paused:" + ex.Message, 1000);
-                        }
-                        catch (Exception ex)
-                        {
-                            ProgressControl.State = ProgressState.Faulted;
-                            InAppNotification.Show("Task Error:" + ex.Message, 1000);
-                        }
+                        //try
+                        //{
+                        //    _cancellationTokenSource = new CancellationTokenSource();
+                        //    await AddNewDownload(_cancellationTokenSource.Token);
+                        //    Downloads = _downloads;
+                        //    ProgressControl.State = ProgressState.Completed;
+                        //    await Task.Delay(TimeSpan.FromSeconds(2));
+                        //    Hide();
+                        //}
+                        //catch (OperationCanceledException ex)
+                        //{
+                        //    InAppNotification.Show("Task Paused:" + ex.Message, 1000);
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    ProgressControl.State = ProgressState.Faulted;
+                        //    InAppNotification.Show("Task Error:" + ex.Message, 1000);
+                        //}
                     }
                     break;
                 case ProgressState.Completed:
@@ -210,6 +210,10 @@ namespace ProgressControlSample.Download
             Links.Add(new Uri("http://errorLink" + _count++, UriKind.RelativeOrAbsolute));
         }
 
-       
+        private void OnCancel(object sender, RoutedEventArgs e)
+        {
+            Downloads = null;
+            Hide();
+        }
     }
 }

@@ -188,6 +188,8 @@
                 Value="{ThemeResource ButtonBackground}" />
         <Setter Property="Foreground"
                 Value="{ThemeResource ButtonForeground}" />
+        <Setter Property="Padding"
+                Value="8,4,8,4" />
         <Setter Property="BorderBrush"
                 Value="#FFCCCCCC" />
         <Setter Property="BorderThickness"

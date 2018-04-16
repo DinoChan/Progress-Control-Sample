@@ -4,9 +4,8 @@
                xmlns:local="using:ProgressControlSample"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+               xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
                mc:Ignorable="d"
-               PrimaryButtonText="X"
                Title="Add New Download">
 
     <ContentDialog.Resources>
@@ -20,19 +19,23 @@
         </Grid.RowDefinitions>
 
         <CommandBar   DefaultLabelPosition="Right">
-            <AppBarButton Content="Normal" Label="Normal" Click="OnAddNormalLink">
+            <AppBarButton Content="Normal"
+                          Label="Normal"
+                          Click="OnAddNormalLink">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets"
                               Glyph="&#xE948;" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Label="TimeOut" Click="OnAddTimeOutLink">
+            <AppBarButton Label="TimeOut"
+                          Click="OnAddTimeOutLink">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets"
                               Glyph="&#xE948;" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Label="Error" Click="OnAddErrorLink">
+            <AppBarButton Label="Error"
+                          Click="OnAddErrorLink">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets"
                               Glyph="&#xE948;" />
@@ -42,20 +45,23 @@
         <ListView x:Name="LinksElkement"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   Grid.Row="1"
-                  Margin="8" 
-                  ItemsSource="{x:Bind Links}"/>
-        
+                  Margin="8"
+                  ItemsSource="{x:Bind Links}" />
+
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Right">
             <controls:InAppNotification VerticalAlignment="Center"
                                         x:Name="InAppNotification" />
-           
+
             <local:ProgressControl x:Name="ProgressControl"
                                    Maximum="{x:Bind TotalLinks}"
                                    Value="{x:Bind FinishedTasks}"
-                                   StateChanged="OnStateChanged" 
-                                   Content="Download"/>
+                                   StateChanged="OnStateChanged"
+                                   Content="Download" Margin="8"/>
+            <Button Content="Cancel" Margin="8" Click="OnCancel"/>
+            
+            
         </StackPanel>
     </Grid>
 </ContentDialog>
