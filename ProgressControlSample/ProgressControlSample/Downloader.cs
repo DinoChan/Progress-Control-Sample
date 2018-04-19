@@ -89,14 +89,8 @@ namespace ProgressControlSample
 
         private async Task LoadInformation()
         {
-            try
-            {
-                await Task.Delay(1000);
-            }
-            catch (Exception ex)
-            {
+            await Task.Delay(1000);
 
-            }
             Name = Uri.AbsoluteUri;
             var random = new Random();
             const int maxValue = 10 * 1024 * 1024;
