@@ -59,7 +59,7 @@ namespace ProgressControlSample
             }
         }
 
-        public async Task StartDownload(IProgress<double> progress, CancellationToken cancellationToken)
+        public async Task StartDownload(IProgress<long> progress, CancellationToken cancellationToken)
         {
             var random = new Random();
             while (ReceivedBytes < TotalBytes)
@@ -67,8 +67,9 @@ namespace ProgressControlSample
                 using (var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken))
                 {
                     await Task.Delay(100, cts.Token);
-                    ReceivedBytes += random.Next(1024 * 1024);
-                    progress?.Report((double)ReceivedBytes / TotalBytes);
+                    var bytesReceived = random.Next(1024 * 1024);
+                    ReceivedBytes += bytesReceived;
+                    progress?.Report(bytesReceived);
                     cancellationToken.ThrowIfCancellationRequested();
                 }
             }
@@ -76,7 +77,7 @@ namespace ProgressControlSample
 
         private async Task LoadInformation(CancellationToken cancellationToken)
         {
-            
+
             await Task.Delay(TimeSpan.FromSeconds(_count++ * 0.5), cancellationToken);
             Name = Uri.AbsoluteUri;
 

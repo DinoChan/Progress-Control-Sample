@@ -48,18 +48,22 @@
                   Margin="8"
                   ItemsSource="{x:Bind Links}" />
 
+        <controls:InAppNotification VerticalAlignment="Center"
+                                    FontSize="11"
+                                    x:Name="InAppNotification"
+                             
+                                    Grid.Row="2"
+                                    HorizontalAlignment="Left"/>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
+                    Height="32"
                     HorizontalAlignment="Right">
-            <controls:InAppNotification VerticalAlignment="Center"
-                                        x:Name="InAppNotification" />
-
             <local:ProgressControl x:Name="ProgressControl"
                                    Maximum="{x:Bind TotalLinks,Mode=OneWay}"
                                    Value="{x:Bind FinishedTasks,Mode=OneWay}"
                                    StateChanged="OnStateChanged"
-                                   Content="Download" Margin="8,8,24,8"/>
-            <Button Content="Cancel" Margin="8" Click="OnCancel"/>
+                                   Content="Download" Margin="8,0,24,0"/>
+            <Button Content="Cancel" Margin="8,0" Click="OnCancel"/>
             
             
         </StackPanel>

@@ -395,7 +395,6 @@
                                                               BorderThickness="{TemplateBinding BorderThickness}"
                                                               Background="{TemplateBinding Background}"
                                                               x:Name="ProgressStateIndicator"
-                                                              HorizontalAlignment="Center"
                                                               TabIndex="1">
                                 </local:ProgressStateIndicator>
                                 <Grid x:Name="ProgressGrid">
