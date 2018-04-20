@@ -103,8 +103,8 @@
     <Compile Include="Behaviors\ProgressBehavior.cs" />
     <Compile Include="Behaviors\RectangleToEllipseBehavior.cs" />
     <Compile Include="Behaviors\RelativeOffsetBehavior.cs" />
-    <Compile Include="Downloader.cs" />
-    <Compile Include="DownloadPage.xaml.cs">
+    <Compile Include="Download\Downloader.cs" />
+    <Compile Include="Download\DownloadPage.xaml.cs">
       <DependentUpon>DownloadPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Download\AddDownloadDialog.xaml.cs">
@@ -150,7 +150,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DownloadPage.xaml">
+    <Page Include="Download\DownloadPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

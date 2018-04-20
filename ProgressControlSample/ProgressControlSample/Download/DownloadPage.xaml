@@ -13,8 +13,21 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition/>
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Button Content="Add Links" Click="OnAddLinks"/>
-        <ListView Grid.Row="1"/>
+        <ListView Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock Text="{Binding Name}"/>
+                        <local:ProgressControl HorizontalAlignment="Right"
+                                               Maximum="{Binding TotalBytes}"
+                                               Value="{Binding ReceivedBytes}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock x:Name="SpeedElement" Grid.Row="2"/>
     </Grid>
 </UserControl>
