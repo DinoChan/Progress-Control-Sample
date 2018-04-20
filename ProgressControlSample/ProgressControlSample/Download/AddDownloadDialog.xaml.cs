@@ -17,6 +17,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using ProgressControlSample.Annotations;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“内容对话框”项模板
@@ -39,7 +42,7 @@ namespace ProgressControlSample.Download
 
         }
 
-        
+
 
         public ObservableCollection<Uri> Links { get; } = new ObservableCollection<Uri>();
         private readonly List<Downloader> _downloads = new List<Downloader>();
@@ -75,30 +78,26 @@ namespace ProgressControlSample.Download
 
         private async Task<IEnumerable<Downloader>> AddNewDownload3(IEnumerable<Uri> links, CancellationToken cancellationToken)
         {
-            TotalLinks = Links.Count();
+            TotalLinks = Links.Count;
             _finishedTasks = _downloads.Count;
 
-            Task<Downloader> Selector(Uri link)
-            {
-                using (var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken))
-                {
-                    var token = cts.Token;
-                    cts.CancelAfter(TimeSpan.FromSeconds(5));
-                    var downloader = Downloader.Create(link, token);
-                    return downloader;
-                }
-            }
+            Task<Downloader> Selector(Uri link) => Downloader.Create(link, cancellationToken);
 
             var downlodTasks = links.Select(Selector);
 
             var progressTasks = downlodTasks.Select(async t =>
             {
-                var result = await t;
+
+                var result = await t.ToObservable().Timeout(TimeSpan.FromSeconds(6));
+                
                 await _mutex.WaitAsync(cancellationToken);
                 try
                 {
-                    FinishedTasks++;
-                    _downloads.Add(t.Result);
+                    if (cancellationToken.IsCancellationRequested == false)
+                    {
+                        FinishedTasks++;
+                        _downloads.Add(t.Result);
+                    }
                 }
                 finally
                 {
@@ -166,7 +165,6 @@ namespace ProgressControlSample.Download
                         }
                         catch (OperationCanceledException ex)
                         {
-                            ProgressControl.State = ProgressState.Faulted;
                             InAppNotification.Show("Task Paused:" + ex.Message, 5000);
                         }
                         catch (Exception ex)
@@ -193,7 +191,7 @@ namespace ProgressControlSample.Download
         private async Task AddNewDownload(CancellationToken ccancellationToken)
         {
             var links = Links.Where(l => _downloads.Select(d => d.Uri).Contains(l) == false).ToList();
-            await AddNewDownload2(links, ccancellationToken);
+            await AddNewDownload3(links, ccancellationToken);
         }
 
         private void OnAddNormalLink(object sender, RoutedEventArgs e)

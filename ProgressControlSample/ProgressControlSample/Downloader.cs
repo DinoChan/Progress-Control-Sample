@@ -12,6 +12,8 @@ namespace ProgressControlSample
 {
     public class Downloader : INotifyPropertyChanged
     {
+        private static int _count;
+
         public static async Task<Downloader> Create(Uri uri, CancellationToken cancellationToken)
         {
             var downloader = new Downloader(uri);
@@ -74,10 +76,12 @@ namespace ProgressControlSample
 
         private async Task LoadInformation(CancellationToken cancellationToken)
         {
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            
+            await Task.Delay(TimeSpan.FromSeconds(_count++ * 0.5), cancellationToken);
             Name = Uri.AbsoluteUri;
-            var random = new Random();
+
             const int maxValue = 10 * 1024 * 1024;
+            var random = new Random();
             TotalBytes = random.Next(maxValue);
 
             if (Name.Contains("timeout"))

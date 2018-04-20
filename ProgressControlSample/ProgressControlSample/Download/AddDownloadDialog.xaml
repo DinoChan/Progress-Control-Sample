@@ -55,8 +55,8 @@
                                         x:Name="InAppNotification" />
 
             <local:ProgressControl x:Name="ProgressControl"
-                                   Maximum="{x:Bind TotalLinks}"
-                                   Value="{x:Bind FinishedTasks}"
+                                   Maximum="{x:Bind TotalLinks,Mode=OneWay}"
+                                   Value="{x:Bind FinishedTasks,Mode=OneWay}"
                                    StateChanged="OnStateChanged"
                                    Content="Download" Margin="8,8,24,8"/>
             <Button Content="Cancel" Margin="8" Click="OnCancel"/>

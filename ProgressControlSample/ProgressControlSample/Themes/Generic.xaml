@@ -449,10 +449,10 @@
                 Value="{ThemeResource ButtonBorderThemeThickness}" />
         <Setter Property="Padding"
                 Value="8,4,8,4" />
-        <Setter Property="HorizontalAlignment"
+        <!--<Setter Property="HorizontalAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalAlignment"
-                Value="Center" />
+                Value="Center" />-->
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontWeight"
