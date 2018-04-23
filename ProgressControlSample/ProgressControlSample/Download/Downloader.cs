@@ -38,35 +38,23 @@ namespace ProgressControlSample
 
         public string Name { get; private set; }
 
-        public long TotalBytes { get; private set; }
+        public int TotalBytes { get; private set; }
 
 
-        private long _receivedBytes;
 
         /// <summary>
         /// 获取或设置 ReceivedBytes 的值
         /// </summary>
-        public long ReceivedBytes
-        {
-            get => _receivedBytes;
-            set
-            {
-                if (_receivedBytes == value)
-                    return;
+        public int ReceivedBytes { get; private set; }
 
-                _receivedBytes = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public async Task StartDownload(IProgress<long> progress, CancellationToken cancellationToken)
+        public async Task StartDownload(IProgress<int> progress, CancellationToken cancellationToken)
         {
             var random = new Random();
             while (ReceivedBytes < TotalBytes)
             {
                 using (var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken))
                 {
-                    await Task.Delay(100, cts.Token);
+                    await Task.Delay(TimeSpan.FromSeconds(1), cts.Token);
                     var bytesReceived = random.Next(1024 * 1024);
                     ReceivedBytes += bytesReceived;
                     progress?.Report(bytesReceived);
