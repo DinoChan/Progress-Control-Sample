@@ -15,9 +15,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Button Content="Add Links"
-                Click="OnAddLinks" />
+                Click="OnAddLinks" Margin="8"/>
         <ListView Grid.Row="1"
-                  ItemsSource="{x:Bind Downloads}">
+                  ItemsSource="{x:Bind Downloads}" Margin="8">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment"
@@ -31,17 +31,20 @@
                 <DataTemplate>
                     <Grid>
                         <TextBlock Text="{Binding Downloader.Name}" />
+                       
+                        
                         <local:ProgressControl HorizontalAlignment="Right"
                                                Maximum="{Binding Downloader.TotalBytes}"
                                                Value="{Binding Downloader.ReceivedBytes}"
                                                Margin="20,0"
-                                               State="{Binding State}"
-                                               Content="Download" />
+                                               State="{Binding State,Mode=TwoWay}"
+                                               Content="Download" 
+                                               StateChanged="OnDownloadStateChanged"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <TextBlock x:Name="SpeedElement"
-                   Grid.Row="2" />
+                   Grid.Row="2" Margin="8"/>
     </Grid>
 </UserControl>

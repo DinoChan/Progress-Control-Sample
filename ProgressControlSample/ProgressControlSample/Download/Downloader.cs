@@ -47,12 +47,16 @@ namespace ProgressControlSample
         /// </summary>
         public int ReceivedBytes { get; private set; }
 
+        private CancellationToken _cancellationToken;
+
         public async Task StartDownload(IProgress<int> progress, CancellationToken cancellationToken)
         {
+            _cancellationToken = cancellationToken;
             var random = new Random();
-            while (ReceivedBytes < TotalBytes)
+
+            using (var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken))
             {
-                using (var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken))
+                while (ReceivedBytes < TotalBytes)
                 {
                     await Task.Delay(TimeSpan.FromSeconds(1), cts.Token);
                     var bytesReceived = random.Next(1024 * 1024);
