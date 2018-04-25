@@ -12,8 +12,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,13 +41,12 @@ namespace ProgressControlSample
             var progress = new Progress<int>();
             _progress = progress;
             var reports = Observable.FromEventPattern<int>(handler => progress.ProgressChanged += handler, handler => progress.ProgressChanged -= handler);
-            reports.Buffer(TimeSpan.FromSeconds(1)).Subscribe(x =>
+            reports.Buffer(TimeSpan.FromSeconds(1)).Subscribe(async x =>
             {
-
-                Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    SpeedElement.Text = string.Format("{0} Bytes/S", x.Sum(s => s.EventArgs).ToString("N0"));
-                });
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                 {
+                     SpeedElement.Text = string.Format("{0} Bytes/S", x.Sum(s => s.EventArgs).ToString("N0"));
+                 });
             });
         }
 
