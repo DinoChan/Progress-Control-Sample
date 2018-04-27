@@ -104,6 +104,7 @@
     <Compile Include="Behaviors\RectangleToEllipseBehavior.cs" />
     <Compile Include="Behaviors\RelativeOffsetBehavior.cs" />
     <Compile Include="Download\Downloader.cs" />
+    <Compile Include="Download\DownloaderModel.cs" />
     <Compile Include="Download\DownloadPage.xaml.cs">
       <DependentUpon>DownloadPage.xaml</DependentUpon>
     </Compile>
