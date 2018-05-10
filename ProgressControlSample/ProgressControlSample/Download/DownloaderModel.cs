@@ -41,7 +41,7 @@ namespace ProgressControlSample.Download
             _cancellationTokenSource.Cancel();
         }
 
-        public async Task StartDownload()
+        public async Task StartDownloadAsync()
         {
             if (_isDownloaeding)
                 return;
@@ -57,7 +57,7 @@ namespace ProgressControlSample.Download
                     OnPropertyChanged(nameof(Downloader));
                 };
                 _cancellationTokenSource = new CancellationTokenSource();
-                await Downloader.StartDownload(progress, _cancellationTokenSource.Token);
+                await Downloader.StartDownloadAsync(progress, _cancellationTokenSource.Token);
                 State = ProgressState.Completed;
             }
             finally

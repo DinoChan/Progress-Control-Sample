@@ -14,17 +14,17 @@ namespace ProgressControlSample
     {
         private static int _count;
 
-        public static async Task<Downloader> Create(Uri uri, CancellationToken cancellationToken)
+        public static async Task<Downloader> CreateAsync(Uri uri, CancellationToken cancellationToken)
         {
             var downloader = new Downloader(uri);
-            await downloader.LoadInformation(cancellationToken);
+            await downloader.LoadInformationAsync(cancellationToken);
             return downloader;
         }
 
-        public static async Task<Downloader> Create(Uri uri)
+        public static async Task<Downloader> CreateAsync(Uri uri)
         {
             var downloader = new Downloader(uri);
-            await downloader.LoadInformation();
+            await downloader.LoadInformationAsync();
             return downloader;
         }
 
@@ -49,7 +49,7 @@ namespace ProgressControlSample
 
         private CancellationToken _cancellationToken;
 
-        public async Task StartDownload(IProgress<int> progress, CancellationToken cancellationToken)
+        public async Task StartDownloadAsync(IProgress<int> progress, CancellationToken cancellationToken)
         {
             _cancellationToken = cancellationToken;
             var random = new Random();
@@ -67,7 +67,7 @@ namespace ProgressControlSample
             }
         }
 
-        private async Task LoadInformation(CancellationToken cancellationToken)
+        private async Task LoadInformationAsync(CancellationToken cancellationToken)
         {
 
             await Task.Delay(TimeSpan.FromSeconds(_count++ * 0.5), cancellationToken);
@@ -84,7 +84,7 @@ namespace ProgressControlSample
                 throw new Exception("Something error");
         }
 
-        private async Task LoadInformation()
+        private async Task LoadInformationAsync()
         {
             await Task.Delay(1000);
 

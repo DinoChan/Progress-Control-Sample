@@ -51,23 +51,23 @@ namespace ProgressControlSample.Download
 
         public IEnumerable<Downloader> Downloads { get; private set; }
 
-        private async Task<IEnumerable<Downloader>> AddNewDownload(IEnumerable<Uri> links, CancellationToken cancellationToken)
+        private async Task<IEnumerable<Downloader>> AddNewDownloadAsync(IEnumerable<Uri> links, CancellationToken cancellationToken)
         {
-            var downlodTasks = links.Select(Downloader.Create);
+            var downlodTasks = links.Select(Downloader.CreateAsync);
             var downlodTasksArray = downlodTasks.ToArray();
             var downloads = await Task.WhenAll(downlodTasksArray);
             return downloads;
         }
 
 
-        private async Task<IEnumerable<Downloader>> AddNewDownload2(IEnumerable<Uri> links, CancellationToken cancellationToken)
+        private async Task<IEnumerable<Downloader>> AddNewDownloadAsync2(IEnumerable<Uri> links, CancellationToken cancellationToken)
         {
             var downlodTasks = links.Select(link =>
             {
                 var cts = new CancellationTokenSource();
                 var token = cts.Token;
                 cts.CancelAfter(TimeSpan.FromSeconds(5));
-                return Downloader.Create(link, token);
+                return Downloader.CreateAsync(link, token);
             });
             var downlodTasksArray = downlodTasks.ToArray();
 
@@ -76,12 +76,12 @@ namespace ProgressControlSample.Download
         }
 
 
-        private async Task<IEnumerable<Downloader>> AddNewDownload3(IEnumerable<Uri> links, CancellationToken cancellationToken)
+        private async Task<IEnumerable<Downloader>> AddNewDownloadAsync3(IEnumerable<Uri> links, CancellationToken cancellationToken)
         {
             TotalLinks = Links.Count;
             _finishedTasks = _downloads.Count;
 
-            Task<Downloader> Selector(Uri link) => Downloader.Create(link, cancellationToken);
+            Task<Downloader> Selector(Uri link) => Downloader.CreateAsync(link, cancellationToken);
 
             var downlodTasks = links.Select(Selector);
 
@@ -157,7 +157,7 @@ namespace ProgressControlSample.Download
                         try
                         {
                             _cancellationTokenSource = new CancellationTokenSource();
-                            await AddNewDownload(_cancellationTokenSource.Token);
+                            await AddNewDownloadAsync(_cancellationTokenSource.Token);
                             Downloads = _downloads;
                             ProgressControl.State = ProgressState.Completed;
                             await Task.Delay(TimeSpan.FromSeconds(2));
@@ -188,10 +188,10 @@ namespace ProgressControlSample.Download
         }
 
 
-        private async Task AddNewDownload(CancellationToken ccancellationToken)
+        private async Task AddNewDownloadAsync(CancellationToken ccancellationToken)
         {
             var links = Links.Where(l => _downloads.Select(d => d.Uri).Contains(l) == false).ToList();
-            await AddNewDownload3(links, ccancellationToken);
+            await AddNewDownloadAsync3(links, ccancellationToken);
         }
 
         private void OnAddNormalLink(object sender, RoutedEventArgs e)

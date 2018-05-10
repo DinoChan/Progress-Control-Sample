@@ -70,7 +70,7 @@ namespace ProgressControlSample
                 await _semaphore.WaitAsync();
                 try
                 {
-                    await model.StartDownload();
+                    await model.StartDownloadAsync();
                 }
                 catch (OperationCanceledException)
                 {
@@ -99,7 +99,7 @@ namespace ProgressControlSample
                 case ProgressState.Started:
                     try
                     {
-                        await model?.StartDownload();
+                        await model?.StartDownloadAsync();
                     }
                     catch (OperationCanceledException)
                     {
